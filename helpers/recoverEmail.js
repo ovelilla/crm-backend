@@ -14,7 +14,7 @@ const recoverEmail = async (user) => {
 
     const html = `
         <p>Hola ${name}, has solicitado restablecer tu password.</p>
-        <p>Haz clic en siguiente enlace para que puedas generar un nuevo password</p>
+        <p>Haz click en siguiente enlace para que puedas generar un nuevo password</p>
         <a href="${process.env.FRONTEND_URL}/restaurar/${token}">Restablecer Password</a>
         <p>Si no has solicitado este servicio, puedes ignorar este mensaje.</p>
     `;

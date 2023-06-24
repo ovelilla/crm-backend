@@ -1,7 +1,13 @@
 import { z } from "zod";
-import { recover } from "../controllers/user.controller";
 
 export const registerSchema = z.object({
+    name: z
+        .string({
+            required_error: "Name is required",
+        })
+        .min(2, {
+            message: "Name must be at least 2 characters",
+        }),
     email: z
         .string({
             required_error: "Email is required",
@@ -21,7 +27,7 @@ export const registerSchema = z.object({
         }),
 });
 
-export const confirmSchema = z.object({
+export const tokenSchema = z.object({
     token: z
         .string({
             required_error: "Token is required",
@@ -61,5 +67,22 @@ export const recoverSchema = z.object({
         })
         .min(6, {
             message: "Email is required",
+        }),
+});
+
+export const restoreSchema = z.object({
+    password: z
+        .string({
+            required_error: "Password is required",
+        })
+        .min(6, {
+            message: "Password must be at least 6 characters",
+        }),
+    token: z
+        .string({
+            required_error: "Token is required",
+        })
+        .min(128, {
+            message: "Token is not valid",
         }),
 });

@@ -10,10 +10,10 @@ const registerEmail = async (user) => {
         },
     });
 
-    const { email, token } = user;
+    const { name, email, token } = user;
 
     const html = `
-        <p>Bienvenid@ a CRM Next.js.</p>
+        <p>Hola ${name}, confirma tu cuenta en ChatApp.</p>
         <p>Tu cuenta ya está casi lista, solo debes confirmarla en el siguiente enlace</p>
         <a href="${process.env.FRONTEND_URL}/confirmar/${token}">Comprobar cuenta</a>
         <p>Si no has creado esta cuenta, puedes ignorar este mensaje.</p>
