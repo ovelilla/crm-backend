@@ -13,7 +13,14 @@ export const checkAuth = async (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decodedToken.id;
 
-        req.user = await User.findById(userId).select("_id name email");
+        const foundUser = await User.findById(userId).select("_id name email");
+
+        if (!foundUser) {
+            const error = new Error("User not found");
+            return res.status(404).json({ msg: error.message });
+        }
+
+        req.user = foundUser;
 
         return next();
     } catch (error) {
